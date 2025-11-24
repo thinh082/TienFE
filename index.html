@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng nhập</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="min-h-screen bg-slate-100 font-sans">
+    <main class="flex min-h-screen items-center justify-center px-4">
+      <section class="w-full max-w-[480px] rounded-2xl bg-white p-8 shadow-lg">
+        <h1 class="mb-6 text-center text-[2rem] font-semibold text-slate-800">
+          Cổng nhân sự
+        </h1>
+        <form id="loginForm" class="space-y-5">
+          <div>
+            <label class="mb-2 block text-[1.4rem] text-slate-600"
+              >Tên đăng nhập</label
+            >
+            <input
+              type="text"
+              name="username"
+              required
+              class="w-full rounded-xl border border-slate-200 px-4 py-3 text-[1.4rem] outline-none focus:border-sky-400 focus:ring-2 focus:ring-sky-200"
+            />
+          </div>
+          <div>
+            <label class="mb-2 block text-[1.4rem] text-slate-600"
+              >Mật khẩu</label
+            >
+            <input
+              type="password"
+              name="password"
+              required
+              class="w-full rounded-xl border border-slate-200 px-4 py-3 text-[1.4rem] outline-none focus:border-sky-400 focus:ring-2 focus:ring-sky-200"
+            />
+          </div>
+          <button
+            type="submit"
+            class="w-full rounded-xl bg-sky-600 py-3 text-[1.4rem] font-semibold text-white transition hover:bg-sky-700"
+          >
+            Đăng nhập
+          </button>
+        </form>
+        <p id="loginMessage" class="mt-4 text-center text-[1.4rem] text-slate-600"></p>
+        <div class="mt-6 space-y-3 text-center text-[1.4rem] text-slate-500">
+          <p>
+            <a href="nhanvien.html" class="text-sky-600 underline"
+              >Vào trang nhân viên</a
+            >
+          </p>
+          <p>
+            <a href="admin.html" class="text-sky-600 underline"
+              >Vào trang quản trị</a
+            >
+          </p>
+        </div>
+      </section>
+    </main>
+    <script src="js/api.js"></script>
+    <script src="js/login.js"></script>
+  </body>
+</html>
+

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Nhân viên</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="min-h-screen bg-slate-50">
+    <header class="bg-white shadow">
+      <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+        <h1 class="text-[2rem] font-semibold text-slate-800">
+          Bảng điều khiển nhân viên
+        </h1>
+        <nav class="space-x-4 text-[1.4rem]">
+          <a href="index.html" class="text-slate-500 underline">Đăng xuất</a>
+        </nav>
+      </div>
+    </header>
+    <main class="mx-auto max-w-6xl px-6 py-8 text-[1.4rem]">
+      <section class="mb-8 rounded-2xl bg-white p-6 shadow">
+        <h2 class="mb-4 text-[1.8rem] font-semibold text-slate-800">
+          Thông tin cá nhân
+        </h2>
+        <div id="profileBox" class="grid gap-4 text-slate-600 sm:grid-cols-2"></div>
+      </section>
+
+      <section class="mb-8 rounded-2xl bg-white p-6 shadow">
+        <h2 class="mb-4 text-[1.8rem] font-semibold text-slate-800">
+          Cập nhật thông tin liên hệ
+        </h2>
+        <form id="updateForm" class="grid gap-4 sm:grid-cols-3">
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            class="rounded-xl border border-slate-200 px-4 py-3 outline-none focus:border-sky-400"
+          />
+          <input
+            type="text"
+            name="dienThoai"
+            placeholder="Điện thoại"
+            class="rounded-xl border border-slate-200 px-4 py-3 outline-none focus:border-sky-400"
+          />
+          <input
+            type="text"
+            name="diaChi"
+            placeholder="Địa chỉ"
+            class="rounded-xl border border-slate-200 px-4 py-3 outline-none focus:border-sky-400"
+          />
+          <button
+            type="submit"
+            class="rounded-xl bg-sky-600 py-3 text-white transition hover:bg-sky-700"
+          >
+            Lưu thay đổi
+          </button>
+        </form>
+        <p id="updateMessage" class="mt-3 text-slate-500"></p>
+      </section>
+
+      <section class="mb-8 rounded-2xl bg-white p-6 shadow">
+        <h2 class="mb-4 text-[1.8rem] font-semibold text-slate-800">
+          Chấm công
+        </h2>
+        <div class="flex flex-wrap gap-4">
+          <button
+            id="btnCheckIn"
+            class="rounded-xl bg-emerald-500 px-6 py-3 text-white transition hover:bg-emerald-600"
+          >
+            Check-in
+          </button>
+          <button
+            id="btnCheckOut"
+            class="rounded-xl bg-orange-500 px-6 py-3 text-white transition hover:bg-orange-600"
+          >
+            Check-out
+          </button>
+          <input
+            type="text"
+            id="chamCongNote"
+            placeholder="Ghi chú thêm (tùy chọn)"
+            class="flex-1 rounded-xl border border-slate-200 px-4 py-3 outline-none focus:border-sky-400"
+          />
+        </div>
+        <p id="attendanceMessage" class="mt-3 text-slate-500"></p>
+      </section>
+
+      <section class="rounded-2xl bg-white p-6 shadow">
+        <div class="mb-4 flex items-center justify-between">
+          <h2 class="text-[1.8rem] font-semibold text-slate-800">
+            Lịch sử chấm công gần đây
+          </h2>
+          <select
+            id="historyLimit"
+            class="rounded-xl border border-slate-200 px-4 py-2 outline-none focus:border-sky-400"
+          >
+            <option value="7">7 ngày</option>
+            <option value="15">15 ngày</option>
+            <option value="30" selected>30 ngày</option>
+            <option value="60">60 ngày</option>
+          </select>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-slate-200 text-left">
+            <thead class="bg-slate-100 text-slate-600">
+              <tr>
+                <th class="px-4 py-3 font-semibold">Ngày</th>
+                <th class="px-4 py-3 font-semibold">Giờ vào</th>
+                <th class="px-4 py-3 font-semibold">Giờ ra</th>
+                <th class="px-4 py-3 font-semibold">Ghi chú</th>
+              </tr>
+            </thead>
+            <tbody id="historyBody" class="divide-y divide-slate-200 text-slate-600"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+    <script src="js/api.js"></script>
+    <script src="js/nhanvien.js"></script>
+  </body>
+</html>
+

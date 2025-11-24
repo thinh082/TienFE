@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Quản trị</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="min-h-screen bg-slate-50 text-[1.4rem]">
+    <header class="bg-white shadow">
+      <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+        <h1 class="text-[2rem] font-semibold text-slate-800">Bảng điều khiển admin</h1>
+        <nav class="space-x-4">
+          <a href="index.html" class="text-slate-500 underline">Đăng xuất</a>
+        </nav>
+      </div>
+    </header>
+    <main class="mx-auto max-w-6xl px-6 py-8">
+      <section class="mb-8 grid gap-6 md:grid-cols-3">
+        <div class="rounded-2xl bg-white p-6 shadow">
+          <p class="text-slate-500">Nhân viên</p>
+          <p id="dashboardEmployees" class="text-[2.4rem] font-semibold text-slate-800">0</p>
+        </div>
+        <div class="rounded-2xl bg-white p-6 shadow">
+          <p class="text-slate-500">Phòng ban</p>
+          <p id="dashboardDepartments" class="text-[2.4rem] font-semibold text-slate-800">0</p>
+        </div>
+        <div class="rounded-2xl bg-white p-6 shadow">
+          <p class="text-slate-500">Tài khoản</p>
+          <p id="dashboardAccounts" class="text-[2.4rem] font-semibold text-slate-800">0</p>
+        </div>
+      </section>
+
+      <section class="mb-10 rounded-2xl bg-white p-6 shadow">
+        <div class="mb-4 flex flex-wrap items-center justify-between gap-4">
+          <h2 class="text-[1.8rem] font-semibold text-slate-800">Quản lý nhân viên</h2>
+          <button
+            id="resetEmployeeForm"
+            class="rounded-xl border border-slate-200 px-4 py-2 text-slate-600 transition hover:border-slate-400"
+          >
+            Làm mới form
+          </button>
+        </div>
+        <form id="employeeForm" class="mb-6 grid gap-4 md:grid-cols-2">
+          <input type="hidden" name="id" />
+          <input
+            name="hoTen"
+            placeholder="Họ tên"
+            required
+            class="rounded-xl border border-slate-200 px-4 py-3 outline-none focus:border-sky-400"
+          />
+          <input
+            type="date"
+            name="ngayVaoLam"
+            required
+            class="rounded-xl border border-slate-200 px-4 py-3 outline-none focus:border-sky-400"
+          />
+          <input
+            name="email"
+            type="email"
+            placeholder="Email"
+            class="rounded-xl border border-slate-200 px-4 py-3 outline-none focus:border-sky-400"
+          />
+          <input
+            name="dienThoai"
+            placeholder="Điện thoại"
+            class="rounded-xl border border-slate-200 px-4 py-3 outline-none focus:border-sky-400"
+          />
+          <input
+            name="diaChi"
+            placeholder="Địa chỉ"
+            class="rounded-xl border border-slate-200 px-4 py-3 outline-none focus:border-sky-400"
+          />
+          <select
+            name="idPhongBan"
+            class="rounded-xl border border-slate-200 px-4 py-3 outline-none focus:border-sky-400"
+          >
+            <option value="">Chọn phòng ban</option>
+            <option value="1">1 - Phòng Kế Toán</option>
+            <option value="2">2 - Phòng Nhân Sự</option>
+            <option value="3">3 - Phòng IT</option>
+            <option value="4">4 - Phòng Kinh Doanh</option>
+            <option value="5">5 - Phòng Marketing</option>
+            <option value="6">6 - Phòng Đào Tạo</option>
+            <option value="7">7 - Phòng Quản Trị</option>
+            <option value="8">8 - Phòng Bảo Vệ</option>
+            <option value="9">9 - Phòng Kỹ Thuật</option>
+            <option value="10">10 - Phòng Pháp Chế</option>
+          </select>
+          <select
+            name="idChucVu"
+            class="rounded-xl border border-slate-200 px-4 py-3 outline-none focus:border-sky-400"
+          >
+            <option value="">Chọn chức vụ</option>
+            <option value="1">1 - Trưởng phòng</option>
+            <option value="2">2 - Phó phòng</option>
+            <option value="3">3 - Chuyên viên</option>
+            <option value="4">4 - Nhân viên</option>
+            <option value="5">5 - Thực tập sinh</option>
+            <option value="6">6 - Quản lý dự án</option>
+            <option value="7">7 - Lập trình viên</option>
+            <option value="8">8 - Kế toán viên</option>
+            <option value="9">9 - Marketing</option>
+            <option value="10">10 - Bảo vệ</option>
+          </select>
+          <input
+            name="trangThai"
+            placeholder="Trạng thái (tuỳ chọn khi sửa)"
+            class="rounded-xl border border-slate-200 px-4 py-3 outline-none focus:border-sky-400"
+          />
+          <button
+            type="submit"
+            class="rounded-xl bg-sky-600 py-3 text-white transition hover:bg-sky-700"
+          >
+            Lưu nhân viên
+          </button>
+        </form>
+        <p id="employeeMessage" class="mb-4 text-slate-500"></p>
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-slate-200 text-left">
+            <thead class="bg-slate-100 text-slate-600">
+              <tr>
+                <th class="px-4 py-3 font-semibold">Họ tên</th>
+                <th class="px-4 py-3 font-semibold">Liên hệ</th>
+                <th class="px-4 py-3 font-semibold">Phòng ban</th>
+                <th class="px-4 py-3 font-semibold">Chức vụ</th>
+                <th class="px-4 py-3 font-semibold">Ngày vào</th>
+                <th class="px-4 py-3 font-semibold">Trạng thái</th>
+                <th class="px-4 py-3 font-semibold">Thao tác</th>
+              </tr>
+            </thead>
+            <tbody id="employeeTable" class="divide-y divide-slate-200 text-slate-600"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="mb-10 rounded-2xl bg-white p-6 shadow">
+        <div class="mb-4 flex flex-wrap items-center justify-between gap-4">
+          <h2 class="text-[1.8rem] font-semibold text-slate-800">Quản lý phòng ban</h2>
+          <button
+            id="resetDepartmentForm"
+            class="rounded-xl border border-slate-200 px-4 py-2 text-slate-600 transition hover:border-slate-400"
+          >
+            Làm mới form
+          </button>
+        </div>
+        <form id="departmentForm" class="mb-6 grid gap-4 md:grid-cols-3">
+          <input type="hidden" name="id" />
+          <input
+            name="tenPhongBan"
+            placeholder="Tên phòng ban"
+            required
+            class="rounded-xl border border-slate-200 px-4 py-3 outline-none focus:border-sky-400"
+          />
+          <input
+            name="moTa"
+            placeholder="Mô tả"
+            class="rounded-xl border border-slate-200 px-4 py-3 outline-none focus:border-sky-400"
+          />
+          <button
+            type="submit"
+            class="rounded-xl bg-emerald-500 py-3 text-white transition hover:bg-emerald-600"
+          >
+            Lưu phòng ban
+          </button>
+        </form>
+        <p id="departmentMessage" class="mb-4 text-slate-500"></p>
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-slate-200 text-left">
+            <thead class="bg-slate-100 text-slate-600">
+              <tr>
+                <th class="px-4 py-3 font-semibold">Tên</th>
+                <th class="px-4 py-3 font-semibold">Mô tả</th>
+                <th class="px-4 py-3 font-semibold">Thao tác</th>
+              </tr>
+            </thead>
+            <tbody id="departmentTable" class="divide-y divide-slate-200 text-slate-600"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="rounded-2xl bg-white p-6 shadow">
+        <h2 class="mb-4 text-[1.8rem] font-semibold text-slate-800">
+          Danh sách tài khoản
+        </h2>
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-slate-200 text-left">
+            <thead class="bg-slate-100 text-slate-600">
+              <tr>
+                <th class="px-4 py-3 font-semibold">Tên đăng nhập</th>
+                <th class="px-4 py-3 font-semibold">Vai trò</th>
+                <th class="px-4 py-3 font-semibold">ID nhân viên</th>
+              </tr>
+            </thead>
+            <tbody id="accountTable" class="divide-y divide-slate-200 text-slate-600"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+    <script src="js/api.js"></script>
+    <script src="js/admin.js"></script>
+  </body>
+</html>
+
