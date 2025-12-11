@@ -3,44 +3,168 @@
   <head>
     <meta charset="UTF-8" />
     <title>Quản trị</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      :root {
+        --bg-body: #f3f4f6;
+        --surface: #ffffff;
+        --border: #e2e8f0;
+        --text-strong: #1e293b;
+        --text-muted: #64748b;
+        --primary: #4f46e5;
+        --primary-strong: #4338ca;
+        --success-bg: #ecfdf3;
+        --success-text: #166534;
+        --danger-bg: #fef2f2;
+        --danger-text: #991b1b;
+        --warning-bg: #fefce8;
+        --warning-text: #92400e;
+        --shadow: 0 10px 30px -15px rgba(15, 23, 42, 0.35);
+      }
+      body {
+        font-family: "Inter", system-ui, -apple-system, sans-serif;
+      }
+      .card {
+        background: rgba(255, 255, 255, 0.92);
+        border: 1px solid rgba(226, 232, 240, 0.8);
+        border-radius: 16px;
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(6px);
+      }
+      .stat-card {
+        background: linear-gradient(135deg, rgba(79, 70, 229, 0.08), rgba(79, 70, 229, 0.02));
+        border: 1px solid rgba(226, 232, 240, 0.8);
+        border-radius: 16px;
+        box-shadow: 0 10px 24px -16px rgba(79, 70, 229, 0.45);
+      }
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-weight: 600;
+        font-size: 1.3rem;
+        letter-spacing: 0.01em;
+      }
+      .pill.success { background: var(--success-bg); color: var(--success-text); }
+      .pill.danger { background: var(--danger-bg); color: var(--danger-text); }
+      .pill.warning { background: var(--warning-bg); color: var(--warning-text); }
+      .pill.neutral { background: #eef2ff; color: var(--primary-strong); }
+      .btn-primary {
+        background: linear-gradient(135deg, var(--primary), var(--primary-strong));
+        color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 12px 26px -14px rgba(79, 70, 229, 0.65);
+        transition: transform 150ms ease, box-shadow 150ms ease;
+      }
+      .btn-primary:hover { transform: translateY(-1px); }
+      .btn-primary:active { transform: translateY(0); }
+      .btn-ghost {
+        border: 1px solid var(--border);
+        color: var(--text-muted);
+        border-radius: 12px;
+        transition: transform 150ms ease, border-color 150ms ease, color 150ms ease;
+      }
+      .btn-ghost:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-1px); }
+      .input-modern {
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        background: #fff;
+        height: 48px;
+        padding: 0.75rem 1rem;
+        transition: border 150ms ease, box-shadow 150ms ease;
+      }
+      .input-modern:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+        outline: none;
+      }
+      .table-head {
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 1.2rem;
+        color: var(--text-muted);
+        background: #f8fafc;
+      }
+      .action-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 10px;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 1.3rem;
+        transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease;
+      }
+      .action-btn:hover { transform: translateY(-1px); }
+      .action-edit { background: #eef2ff; color: var(--primary-strong); }
+      .action-delete { background: #fef2f2; color: var(--danger-text); }
+    </style>
   </head>
-  <body class="min-h-screen bg-gradient-to-br from-sky-50 via-white to-blue-50 text-[1.4rem] text-slate-700">
-    <header class="sticky top-0 z-20 border-b border-white/60 bg-white/80 backdrop-blur">
+  <body class="min-h-screen bg-[var(--bg-body)] text-[1.4rem] text-slate-700">
+    <header class="sticky top-0 z-20 border-b border-white/60 bg-white/90 backdrop-blur">
       <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <div>
-          <p class="text-[1.2rem] uppercase tracking-[0.2rem] text-sky-500">HR Admin</p>
-          <h1 class="text-[2rem] font-semibold text-slate-900">Bảng điều khiển</h1>
+          <p class="text-[1.2rem] uppercase tracking-[0.2rem] text-indigo-500">HR Admin</p>
+          <h1 class="text-[2rem] font-semibold text-[var(--text-strong)]">Bảng điều khiển</h1>
         </div>
         <nav class="flex items-center gap-3">
-          <span class="rounded-full bg-sky-100 px-4 py-2 text-sky-600">Admin</span>
-          <a href="index.html" class="rounded-full border border-slate-200 px-4 py-2 text-slate-600 transition hover:border-sky-300 hover:text-sky-600">Đăng xuất</a>
+          <span class="rounded-full bg-indigo-100 px-4 py-2 text-indigo-600">Admin</span>
+          <a href="index.html" class="btn-ghost px-4 py-2">Đăng xuất</a>
         </nav>
       </div>
     </header>
     <main class="mx-auto max-w-6xl px-6 py-8">
       <section class="mb-8 grid gap-6 md:grid-cols-3">
-        <div class="rounded-2xl border border-white/70 bg-white/90 p-6 shadow-sm shadow-sky-50">
-          <p class="text-slate-500">Nhân viên</p>
-          <p id="dashboardEmployees" class="text-[2.4rem] font-semibold text-slate-900">0</p>
+        <div class="stat-card p-6">
+          <div class="flex items-center justify-between">
+            <p class="text-slate-500">Nhân viên</p>
+            <div class="rounded-xl bg-white/80 p-3 text-indigo-500">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.5c1.657 0 3 .843 3 1.884v.616c0 1.04-1.343 1.884-3 1.884s-3-.844-3-1.884v-.616C9 5.343 10.343 4.5 12 4.5z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 8.25c-1.657 0-3 .843-3 1.884v.616C6 11.79 7.343 12.634 9 12.634s3-.844 3-1.884v-.616c0-1.041-1.343-1.884-3-1.884z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75c-1.657 0-3 .843-3 1.884v.616c0 1.04 1.343 1.884 3 1.884s3-.844 3-1.884v-.616c0-1.041-1.343-1.884-3-1.884z" />
+              </svg>
+            </div>
+          </div>
+          <p id="dashboardEmployees" class="mt-2 text-[2.4rem] font-semibold text-[var(--text-strong)]">0</p>
         </div>
-        <div class="rounded-2xl border border-white/70 bg-white/90 p-6 shadow-sm shadow-sky-50">
-          <p class="text-slate-500">Phòng ban</p>
-          <p id="dashboardDepartments" class="text-[2.4rem] font-semibold text-slate-900">0</p>
+        <div class="stat-card p-6">
+          <div class="flex items-center justify-between">
+            <p class="text-slate-500">Phòng ban</p>
+            <div class="rounded-xl bg-white/80 p-3 text-indigo-500">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.5 9.75h15m-12-3h9m-7.5 6h6m-9 6h12" />
+              </svg>
+            </div>
+          </div>
+          <p id="dashboardDepartments" class="mt-2 text-[2.4rem] font-semibold text-[var(--text-strong)]">0</p>
         </div>
-        <div class="rounded-2xl border border-white/70 bg-white/90 p-6 shadow-sm shadow-sky-50">
-          <p class="text-slate-500">Tài khoản</p>
-          <p id="dashboardAccounts" class="text-[2.4rem] font-semibold text-slate-900">0</p>
+        <div class="stat-card p-6">
+          <div class="flex items-center justify-between">
+            <p class="text-slate-500">Tài khoản</p>
+            <div class="rounded-xl bg-white/80 p-3 text-indigo-500">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 11.25a3 3 0 100-6 3 3 0 000 6z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6.75 17.25a5.25 5.25 0 0110.5 0v.75H6.75v-.75z" />
+              </svg>
+            </div>
+          </div>
+          <p id="dashboardAccounts" class="mt-2 text-[2.4rem] font-semibold text-[var(--text-strong)]">0</p>
         </div>
       </section>
 
-      <section class="mb-10 rounded-2xl border border-white/70 bg-white/90 p-6 shadow-sm shadow-sky-50">
+      <section class="card mb-10 p-6">
         <div class="mb-4 flex flex-wrap items-center justify-between gap-4">
-          <h2 class="text-[1.8rem] font-semibold text-slate-900">Quản lý nhân viên</h2>
-          <button
-            id="resetEmployeeForm"
-            class="rounded-xl border border-slate-200 px-4 py-2 text-slate-600 transition hover:border-sky-300 hover:text-sky-600"
-          >
+          <h2 class="text-[1.8rem] font-semibold text-[var(--text-strong)]">Quản lý nhân viên</h2>
+          <button id="resetEmployeeForm" class="btn-ghost px-4 py-2">
             Làm mới form
           </button>
         </div>
@@ -50,33 +174,33 @@
             name="hoTen"
             placeholder="Họ tên"
             required
-            class="rounded-xl border border-slate-200 bg-white px-4 py-3 outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-100"
+            class="input-modern"
           />
           <input
             type="date"
             name="ngayVaoLam"
             required
-            class="rounded-xl border border-slate-200 bg-white px-4 py-3 outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-100"
+            class="input-modern"
           />
           <input
             name="email"
             type="email"
             placeholder="Email"
-            class="rounded-xl border border-slate-200 bg-white px-4 py-3 outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-100"
+            class="input-modern"
           />
           <input
             name="dienThoai"
             placeholder="Điện thoại"
-            class="rounded-xl border border-slate-200 bg-white px-4 py-3 outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-100"
+            class="input-modern"
           />
           <input
             name="diaChi"
             placeholder="Địa chỉ"
-            class="rounded-xl border border-slate-200 bg-white px-4 py-3 outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-100"
+            class="input-modern"
           />
           <select
             name="idPhongBan"
-            class="rounded-xl border border-slate-200 bg-white px-4 py-3 outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-100"
+            class="input-modern"
           >
             <option value="">Chọn phòng ban</option>
             <option value="1">1 - Phòng Kế Toán</option>
@@ -92,7 +216,7 @@
           </select>
           <select
             name="idChucVu"
-            class="rounded-xl border border-slate-200 bg-white px-4 py-3 outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-100"
+            class="input-modern"
           >
             <option value="">Chọn chức vụ</option>
             <option value="1">1 - Trưởng phòng</option>
@@ -109,11 +233,11 @@
           <input
             name="trangThai"
             placeholder="Trạng thái (tuỳ chọn khi sửa)"
-            class="rounded-xl border border-slate-200 bg-white px-4 py-3 outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-100"
+            class="input-modern"
           />
           <button
             type="submit"
-            class="rounded-xl bg-sky-600 py-3 text-white transition hover:-translate-y-[1px] hover:bg-sky-700 active:translate-y-0"
+            class="btn-primary py-3"
           >
             Lưu nhân viên
           </button>
@@ -121,7 +245,7 @@
         <p id="employeeMessage" class="mb-4 text-slate-500"></p>
         <div class="overflow-x-auto">
           <table class="min-w-full divide-y divide-slate-200 text-left">
-            <thead class="bg-slate-100/80 text-slate-600">
+            <thead class="table-head">
               <tr>
                 <th class="px-4 py-3 font-semibold">Họ tên</th>
                 <th class="px-4 py-3 font-semibold">Liên hệ</th>
@@ -137,13 +261,10 @@
         </div>
       </section>
 
-      <section class="mb-10 rounded-2xl border border-white/70 bg-white/90 p-6 shadow-sm shadow-sky-50">
+      <section class="card mb-10 p-6">
         <div class="mb-4 flex flex-wrap items-center justify-between gap-4">
-          <h2 class="text-[1.8rem] font-semibold text-slate-900">Quản lý phòng ban</h2>
-          <button
-            id="resetDepartmentForm"
-            class="rounded-xl border border-slate-200 px-4 py-2 text-slate-600 transition hover:border-sky-300 hover:text-sky-600"
-          >
+          <h2 class="text-[1.8rem] font-semibold text-[var(--text-strong)]">Quản lý phòng ban</h2>
+          <button id="resetDepartmentForm" class="btn-ghost px-4 py-2">
             Làm mới form
           </button>
         </div>
@@ -153,16 +274,16 @@
             name="tenPhongBan"
             placeholder="Tên phòng ban"
             required
-            class="rounded-xl border border-slate-200 bg-white px-4 py-3 outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-100"
+            class="input-modern"
           />
           <input
             name="moTa"
             placeholder="Mô tả"
-            class="rounded-xl border border-slate-200 bg-white px-4 py-3 outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-100"
+            class="input-modern"
           />
           <button
             type="submit"
-            class="rounded-xl bg-emerald-500 py-3 text-white transition hover:-translate-y-[1px] hover:bg-emerald-600 active:translate-y-0"
+            class="btn-primary py-3"
           >
             Lưu phòng ban
           </button>
@@ -170,7 +291,7 @@
         <p id="departmentMessage" class="mb-4 text-slate-500"></p>
         <div class="overflow-x-auto">
           <table class="min-w-full divide-y divide-slate-200 text-left">
-            <thead class="bg-slate-100 text-slate-600">
+            <thead class="table-head">
               <tr>
                 <th class="px-4 py-3 font-semibold">Tên</th>
                 <th class="px-4 py-3 font-semibold">Mô tả</th>
@@ -182,13 +303,13 @@
         </div>
       </section>
 
-      <section class="rounded-2xl border border-white/70 bg-white/90 p-6 shadow-sm shadow-sky-50">
-        <h2 class="mb-4 text-[1.8rem] font-semibold text-slate-900">
+      <section class="card p-6">
+        <h2 class="mb-4 text-[1.8rem] font-semibold text-[var(--text-strong)]">
           Danh sách tài khoản
         </h2>
         <div class="overflow-x-auto">
           <table class="min-w-full divide-y divide-slate-200 text-left">
-            <thead class="bg-slate-100 text-slate-600">
+            <thead class="table-head">
               <tr>
                 <th class="px-4 py-3 font-semibold">Tên đăng nhập</th>
                 <th class="px-4 py-3 font-semibold">Vai trò</th>

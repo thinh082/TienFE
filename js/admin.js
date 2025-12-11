@@ -21,6 +21,21 @@ const adminCache = {
   departments: [],
 };
 
+const renderStatus = (status) => {
+  if (!status) return '<span class="pill neutral">Chưa cập nhật</span>';
+  const normalized = status.toLowerCase();
+  if (normalized.includes("làm") || normalized.includes("active")) {
+    return `<span class="pill success">${status}</span>`;
+  }
+  if (normalized.includes("nghỉ") || normalized.includes("off")) {
+    return `<span class="pill danger">${status}</span>`;
+  }
+  if (normalized.includes("tạm") || normalized.includes("pending")) {
+    return `<span class="pill warning">${status}</span>`;
+  }
+  return `<span class="pill neutral">${status}</span>`;
+};
+
 const setEmployeeMessage = (text, isError = false) => {
   employeeMessage.textContent = text;
   employeeMessage.classList.toggle("text-red-500", isError);
@@ -60,10 +75,10 @@ const loadEmployees = async () => {
           <td class="px-4 py-3">${nv.phongBan || "—"}</td>
           <td class="px-4 py-3">${nv.chucVu || "—"}</td>
           <td class="px-4 py-3">${nv.ngayVaoLam}</td>
-          <td class="px-4 py-3">${nv.trangThai || "—"}</td>
+          <td class="px-4 py-3">${renderStatus(nv.trangThai)}</td>
           <td class="px-4 py-3 space-x-2">
-            <button data-edit="${nv.id}" class="rounded-lg bg-sky-500 px-3 py-1 text-white">Sửa</button>
-            <button data-delete="${nv.id}" class="rounded-lg bg-rose-500 px-3 py-1 text-white">Xóa</button>
+            <button data-edit="${nv.id}" class="action-btn action-edit">Sửa</button>
+            <button data-delete="${nv.id}" class="action-btn action-delete">Xóa</button>
           </td>
         </tr>
       `
@@ -85,8 +100,8 @@ const loadDepartments = async () => {
           <td class="px-4 py-3 font-semibold text-slate-700">${pb.tenPhongBan}</td>
           <td class="px-4 py-3">${pb.moTa || ""}</td>
           <td class="px-4 py-3 space-x-2">
-            <button data-de-edit="${pb.id}" class="rounded-lg bg-sky-500 px-3 py-1 text-white">Sửa</button>
-            <button data-de-delete="${pb.id}" class="rounded-lg bg-rose-500 px-3 py-1 text-white">Xóa</button>
+            <button data-de-edit="${pb.id}" class="action-btn action-edit">Sửa</button>
+            <button data-de-delete="${pb.id}" class="action-btn action-delete">Xóa</button>
           </td>
         </tr>
       `
